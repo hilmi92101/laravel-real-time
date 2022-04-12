@@ -34,11 +34,11 @@ class LandingNotification implements ShouldBroadcast
     public function broadcastOn()
     {
         //return new Channel('notification'); 
-        return ['my-channel'];
+        return ['landing-notification'];
     }
 
     public function broadcastAs() 
     { 
-        return 'my-event';
+        return 'landing-notification-event';
     }
 }

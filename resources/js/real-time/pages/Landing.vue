@@ -30,12 +30,11 @@
         },
         created() {
 
-            window.Echo.channel('my-channel')
-            .listen('.my-event', (e) => {
+            window.Echo.channel('landing-notification')
+            .listen('.landing-notification-event', (e) => {
                 console.log(e);
-                console.log('u did it landing');
                 this.$snackbar.add({
-                    "title": "Custom Message",
+                    "title": "Just now!",
                     "text": e.message,
                     "background": "#fff",
                     "icon": {

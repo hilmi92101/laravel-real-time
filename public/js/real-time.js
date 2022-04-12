@@ -19693,12 +19693,11 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    window.Echo.channel('my-channel').listen('.my-event', function (e) {
+    window.Echo.channel('landing-notification').listen('.landing-notification-event', function (e) {
       console.log(e);
-      console.log('u did it landing');
 
       _this.$snackbar.add({
-        "title": "Custom Message",
+        "title": "Just now!",
         "text": e.message,
         "background": "#fff",
         "icon": {
