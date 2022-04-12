@@ -12,3 +12,6 @@ app.use(SnackbarService);
 app.component("vue3-snackbar", Vue3Snackbar);
 
 app.mount('#app');
+
+
+

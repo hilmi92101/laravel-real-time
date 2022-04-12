@@ -8,7 +8,7 @@
         <Text></Text>
 
         <teleport to="body">
-            <vue3-snackbar bottom right :duration="14000" messageClass="landing-notification"></vue3-snackbar>
+            <vue3-snackbar bottom right :duration="4000" messageClass="landing-notification"></vue3-snackbar>
         </teleport>
 
     </div>
@@ -29,6 +29,24 @@
             }
         },
         created() {
+
+            window.Echo.channel('my-channel')
+            .listen('.my-event', (e) => {
+                console.log(e);
+                console.log('u did it landing');
+                this.$snackbar.add({
+                    "title": "Custom Message",
+                    "text": e.message,
+                    "background": "#fff",
+                    "icon": {
+                        "path": "M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z",
+                        "type": "mdi"
+                    },
+                    "group": "fed0a",
+                    "count": 1
+                });
+                
+            });
         },
     	methods: {
             redirect(routeName){ 
