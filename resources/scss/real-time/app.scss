@@ -4,3 +4,8 @@
 // Bootstrap 
 @import '~bootstrap/scss/bootstrap';
 
+// Notification 
+@import "~vue3-snackbar/dist/style.css";
+
+// Custom 
+@import "./notification";

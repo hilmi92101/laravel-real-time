@@ -19696,6 +19696,34 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: routeName
       });
+    },
+    successMessage: function successMessage() {
+      //console.log(1111111);
+      this.$snackbar.add({
+        type: 'success',
+        text: 'This is a snackbar message'
+      });
+    },
+    errorMessage: function errorMessage() {
+      //console.log(1111111);
+      this.$snackbar.add({
+        type: 'error',
+        text: 'This is an error message'
+      });
+    },
+    customMessage: function customMessage() {
+      //console.log(1111111);
+      this.$snackbar.add({
+        "title": "Custom Message",
+        "text": "This is a message with a custom background and icon",
+        "background": "#fff",
+        "icon": {
+          "path": "M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z",
+          "type": "mdi"
+        },
+        "group": "fed0a",
+        "count": 1
+      });
     }
   },
   computed: {},
@@ -19808,12 +19836,36 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Text = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Text");
 
+  var _component_vue3_snackbar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue3-snackbar");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.redirect('register');
     }, ["prevent"])),
     "class": "btn btn-primary"
-  }, "To Register page"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Text)]);
+  }, "To Register page"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.successMessage();
+    }, ["prevent"])),
+    "class": "btn btn-success"
+  }, "Show Success Notification"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.errorMessage();
+    }, ["prevent"])),
+    "class": "btn btn-danger"
+  }, "Show Error Notification"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.customMessage();
+    }, ["prevent"])),
+    "class": "btn btn-primary"
+  }, "Custom Notification"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Text), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Teleport, {
+    to: "body"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_snackbar, {
+    bottom: "",
+    right: "",
+    duration: 14000,
+    messageClass: "landing-notification"
+  })]))]);
 }
 
 /***/ }),
@@ -19860,14 +19912,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ "./resources/js/real-time/routes.js");
-/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue */ "./resources/js/real-time/App.vue");
+/* harmony import */ var vue3_snackbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue3-snackbar */ "./node_modules/vue3-snackbar/dist/vue3-snackbar.es.js");
+/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App.vue */ "./resources/js/real-time/App.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/real-time/bootstrap.js");
 
 
 
 
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
 app.use(_routes__WEBPACK_IMPORTED_MODULE_1__["default"]);
+app.use(vue3_snackbar__WEBPACK_IMPORTED_MODULE_2__.SnackbarService);
+app.component("vue3-snackbar", vue3_snackbar__WEBPACK_IMPORTED_MODULE_2__.Vue3Snackbar);
 app.mount('#app');
 
 /***/ }),
@@ -41100,6 +41156,437 @@ function useRoute() {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routeLocationKey);
 }
 
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue3-snackbar/dist/vue3-snackbar.es.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/vue3-snackbar/dist/vue3-snackbar.es.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SnackbarMessages": () => (/* binding */ messages),
+/* harmony export */   "SnackbarService": () => (/* binding */ SnackbarService),
+/* harmony export */   "Vue3Snackbar": () => (/* binding */ _sfc_main),
+/* harmony export */   "useSnackbar": () => (/* binding */ useSnackbar)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a2, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a2, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a2, prop, b[prop]);
+    }
+  return a2;
+};
+var __spreadProps = (a2, b) => __defProps(a2, __getOwnPropDescs(b));
+
+var mdiAlertOctagonOutline = "M8.27,3L3,8.27V15.73L8.27,21H15.73C17.5,19.24 21,15.73 21,15.73V8.27L15.73,3M9.1,5H14.9L19,9.1V14.9L14.9,19H9.1L5,14.9V9.1M11,15H13V17H11V15M11,7H13V13H11V7";
+var mdiAlertOutline = "M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16";
+var mdiCheckCircle = "M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z";
+var mdiClose = "M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z";
+var mdiInformationOutline = "M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z";
+var e = Object.defineProperty, t = Object.defineProperties, r = Object.getOwnPropertyDescriptors, o = Object.getOwnPropertySymbols, a = Object.prototype.hasOwnProperty, i = Object.prototype.propertyIsEnumerable, n = (t2, r2, o2) => r2 in t2 ? e(t2, r2, { enumerable: true, configurable: true, writable: true, value: o2 }) : t2[r2] = o2, l = (e2, t2) => {
+  for (var r2 in t2 || (t2 = {}))
+    a.call(t2, r2) && n(e2, r2, t2[r2]);
+  if (o)
+    for (var r2 of o(t2))
+      i.call(t2, r2) && n(e2, r2, t2[r2]);
+  return e2;
+};
+const c = { transform: "rotate(var(--r, 0deg)) scale(var(--sx, 1), var(--sy, 1))" }, s = { fill: "currentColor" }, v = { mdi: { size: 24, viewbox: "0 0 24 24" }, "simple-icons": { size: 24, viewbox: "0 0 24 24" }, default: { size: 0, viewbox: "0 0 0 0" } };
+var f = { name: "icon", props: { type: String, faIcon: Object, path: { type: [String, Object] }, size: { type: [Number, String], default: 24 }, viewbox: String, flip: { type: String, validator: (e2) => ["horizontal", "vertical", "both"].includes(e2) }, rotate: { type: [Number, String], default: 0 } }, setup(e2) {
+  if (!e2.path && !e2.faIcon)
+    return console.warn("vue3-icon requires either a 'path' or an 'fa-icon' property"), () => (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)("div");
+  const o2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
+    var t2;
+    return ((t2 = e2.faIcon) == null ? void 0 : t2.prefix) || e2.type;
+  }), a2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => parseInt(e2.rotate, 10)), i2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => v[o2.value] || v.default), n2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => parseInt(e2.size, 10) || i2.value.size), f2 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => !!e2.faIcon && `0 0 ${e2.faIcon.icon[0]} ${e2.faIcon.icon[1]}`), b = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => f2.value || e2.viewbox || i2.value.viewbox), y = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
+    return o3 = l({}, c), i3 = { "--sx": ["both", "horizontal"].includes(e2.flip) ? "-1" : "1", "--sy": ["both", "vertical"].includes(e2.flip) ? "-1" : "1", "--r": isNaN(a2.value) ? a2.value : a2.value + "deg" }, t(o3, r(i3));
+    var o3, i3;
+  }), d = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
+    var t2;
+    return e2.faIcon ? (t2 = e2.faIcon) == null ? void 0 : t2.icon[4] : e2.type === "simple-icons" && typeof e2.path == "object" ? e2.path.path : e2.path;
+  }), h$1 = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => o2.value === "fad" ? (console.warn("vue3-icon does not currently support Duotone FontAwesome icons"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)("path")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)("path", { d: d.value, style: l({}, s) }));
+  return () => (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)("svg", { style: y.value, class: ["vue3-icon"], width: n2.value, height: n2.value, viewBox: b.value }, [h$1.value]);
+} };
+const _hoisted_1 = { class: "vue3-snackbar-message-wrapper" };
+const _hoisted_2 = {
+  key: 0,
+  class: "vue3-snackbar-message-icon"
+};
+const _hoisted_3 = { class: "vue3-snackbar-message-content" };
+const _hoisted_4 = {
+  key: 0,
+  class: "vue3-snackbar-message-badge"
+};
+const _hoisted_5 = { class: "vue3-snackbar-message-title" };
+const _hoisted_6 = {
+  key: 1,
+  class: "vue3-snackbar-message-additional"
+};
+const _hoisted_7 = /* @__PURE__ */ (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", { class: "spacer" }, null, -1);
+const _hoisted_8 = { class: "vue3-snackbar-message-close" };
+const _sfc_main$1 = {
+  props: {
+    message: {
+      type: Object,
+      default: () => ({})
+    },
+    messageClass: {
+      type: String,
+      default: ""
+    },
+    dense: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: ["dismiss"],
+  setup(__props, { emit }) {
+    const props = __props;
+    let timeout = null, shakeTimeout = null;
+    let hasShake = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    const setMessageTimeout = () => {
+      const messageDuration = !props.message.duration && !props.message.dismissible ? 4e3 : props.message.duration;
+      timeout = setTimeout(dismiss, messageDuration);
+    };
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(() => {
+      setMessageTimeout();
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(() => props.message.count, (v2) => {
+      if (v2 === 1)
+        return false;
+      clearTimeout(timeout);
+      clearTimeout(shakeTimeout);
+      shakeTimeout = setTimeout(() => {
+        hasShake.value = false;
+      }, 1e3);
+      hasShake.value = true;
+      setMessageTimeout();
+    });
+    const dismissClick = () => {
+      if (timeout)
+        clearTimeout(timeout);
+      dismiss();
+    };
+    const dismiss = () => {
+      emit("dismiss", props.message);
+    };
+    const types = {
+      success: {
+        path: mdiCheckCircle
+      },
+      info: {
+        path: mdiInformationOutline
+      },
+      warning: {
+        path: mdiAlertOutline
+      },
+      error: {
+        path: mdiAlertOctagonOutline
+      }
+    };
+    const icon = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
+      const preset = types[props.message.type];
+      if (preset) {
+        preset.type = "mdi";
+        return preset;
+      } else if (props.message.icon && typeof props.message.icon === "object") {
+        return props.message.icon;
+      } else
+        return {
+          path: "",
+          type: "default"
+        };
+    });
+    return (_ctx, _cache) => {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("article", {
+        class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["vue3-snackbar-message", [
+          props.message.type,
+          props.messageClass,
+          {
+            "has-background": props.message.background,
+            "is-dense": props.dense,
+            "shake-baby-shake": hasShake.value
+          }
+        ]]),
+        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+          "--message-background": props.message.background
+        })
+      }, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [
+          icon.value ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(f), (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)(icon.value, { role: "img" }), null, 16)
+          ])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true),
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [
+            props.message.count > 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(props.message.count), 1)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true),
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(props.message.title || props.message.text), 1),
+            props.message.title && props.message.text ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(props.message.text), 1)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true)
+          ]),
+          _hoisted_7,
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [
+            props.message.dismissible !== false ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+              key: 0,
+              onClick: dismissClick
+            }, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(f), {
+                type: "mdi",
+                path: (0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(mdiClose)
+              }, null, 8, ["path"])
+            ])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true)
+          ])
+        ])
+      ], 6);
+    };
+  }
+};
+const propsModel = {
+  top: {
+    type: Boolean,
+    default: false
+  },
+  bottom: {
+    type: Boolean,
+    default: false
+  },
+  left: {
+    type: Boolean,
+    default: false
+  },
+  right: {
+    type: Boolean,
+    default: false
+  },
+  success: {
+    type: String,
+    default: "#4caf50"
+  },
+  error: {
+    type: String,
+    default: "#ff5252"
+  },
+  warning: {
+    type: String,
+    default: "#fb8c00"
+  },
+  info: {
+    type: String,
+    default: "#2196f3"
+  },
+  duration: {
+    type: Number,
+    default: null
+  },
+  messageClass: {
+    type: String
+  },
+  zindex: {
+    type: Number,
+    default: 1e4
+  },
+  dense: {
+    type: Boolean,
+    default: false
+  },
+  reverse: {
+    type: Boolean,
+    default: false
+  },
+  groups: {
+    type: Boolean,
+    default: false
+  }
+};
+var tinyEmitter = { exports: {} };
+function E$1() {
+}
+E$1.prototype = {
+  on: function(name, callback, ctx) {
+    var e2 = this.e || (this.e = {});
+    (e2[name] || (e2[name] = [])).push({
+      fn: callback,
+      ctx
+    });
+    return this;
+  },
+  once: function(name, callback, ctx) {
+    var self = this;
+    function listener() {
+      self.off(name, listener);
+      callback.apply(ctx, arguments);
+    }
+    listener._ = callback;
+    return this.on(name, listener, ctx);
+  },
+  emit: function(name) {
+    var data = [].slice.call(arguments, 1);
+    var evtArr = ((this.e || (this.e = {}))[name] || []).slice();
+    var i2 = 0;
+    var len = evtArr.length;
+    for (i2; i2 < len; i2++) {
+      evtArr[i2].fn.apply(evtArr[i2].ctx, data);
+    }
+    return this;
+  },
+  off: function(name, callback) {
+    var e2 = this.e || (this.e = {});
+    var evts = e2[name];
+    var liveEvents = [];
+    if (evts && callback) {
+      for (var i2 = 0, len = evts.length; i2 < len; i2++) {
+        if (evts[i2].fn !== callback && evts[i2].fn._ !== callback)
+          liveEvents.push(evts[i2]);
+      }
+    }
+    liveEvents.length ? e2[name] = liveEvents : delete e2[name];
+    return this;
+  }
+};
+tinyEmitter.exports = E$1;
+tinyEmitter.exports.TinyEmitter = E$1;
+var E = tinyEmitter.exports;
+var instance = new E();
+var EventBus = {
+  $on: (...args) => instance.on(...args),
+  $once: (...args) => instance.once(...args),
+  $off: (...args) => instance.off(...args),
+  $emit: (...args) => instance.emit(...args)
+};
+const messages = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+const SnackbarSymbol = Symbol();
+function useSnackbar() {
+  const Snackbar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(SnackbarSymbol);
+  if (!Snackbar) {
+    throw new Error("No Snackbar provided!");
+  }
+  return Snackbar;
+}
+const SnackbarService = {
+  install: (app) => {
+    const SnackbarService2 = {
+      add: (message) => {
+        EventBus.$emit("add", message);
+      },
+      clear: () => {
+        EventBus.$emit("clear");
+      }
+    };
+    app.config.globalProperties.$snackbar = SnackbarService2;
+    if (typeof window !== "undefined")
+      window.$snackbar = SnackbarService2;
+    app.provide(SnackbarSymbol, SnackbarService2);
+  }
+};
+var Vue3Snackbar_vue_vue_type_style_index_0_lang = "";
+const _sfc_main = {
+  props: __spreadValues({}, propsModel),
+  emits: ["added", "dismissed", "removed", "cleared"],
+  setup(__props, { emit }) {
+    const props = __props;
+    const generatedBaseClasses = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
+      return {
+        "is-top": props.top,
+        "is-bottom": props.top === false && props.bottom,
+        "is-left": props.left,
+        "is-right": props.left === false && props.right,
+        "is-middle": props.top === false && props.bottom === false,
+        "is-centre": props.left === false && props.right === false
+      };
+    });
+    const generatedBaseStyles = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
+      return {
+        "--success-colour": props.success,
+        "--error-colour": props.error,
+        "--warning-colour": props.warning,
+        "--info-colour": props.info,
+        "--snackbar-zindex": props.zindex
+      };
+    });
+    const hashCode = (s2) => Math.abs(s2.split("").reduce((a2, b) => (a2 << 5) - a2 + b.charCodeAt(0) | 0, 0));
+    let messageId = 1;
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(() => {
+      EventBus.$on("add", (ev) => {
+        emit("added", ev);
+        if (!ev.group)
+          ev.group = hashCode(`${ev.type}${ev.title}${ev.text}`).toString(16);
+        if (props.duration && !ev.duration && ev.duration !== 0)
+          ev.duration = props.duration;
+        const existingGroup = ev.group && messages.value.find((msg) => msg.group === ev.group);
+        if (props.groups === false || !existingGroup) {
+          const message = __spreadProps(__spreadValues({}, ev), {
+            id: messageId,
+            count: 1
+          });
+          if (props.reverse)
+            messages.value.unshift(message);
+          else
+            messages.value.push(message);
+          messageId++;
+        } else {
+          existingGroup.count++;
+        }
+      });
+      EventBus.$on("clear", () => {
+        emit("cleared");
+        messages.value = [];
+      });
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUnmounted)(() => {
+      EventBus.$off("add");
+      EventBus.$off("clear");
+    });
+    const remove = (ev, wasDismissed = false) => {
+      if (wasDismissed)
+        emit("dismissed", ev);
+      else
+        emit("removed", ev);
+      messages.value = messages.value.filter((message) => {
+        return message.id !== ev.id;
+      });
+    };
+    return (_ctx, _cache) => {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", {
+        id: "vue3-snackbar--container",
+        class: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[generatedBaseClasses.value], "vue3-snackbar"]),
+        style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)(generatedBaseStyles.value)
+      }, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
+          name: "vue3-snackbar-message",
+          tag: "div"
+        }, {
+          default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+            ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(messages), (message) => {
+              return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_sfc_main$1, {
+                key: message.id,
+                message,
+                "message-class": props.messageClass,
+                dense: props.dense,
+                onDismiss: _cache[0] || (_cache[0] = ($event) => remove($event, true))
+              }, null, 8, ["message", "message-class", "dense"]);
+            }), 128))
+          ]),
+          _: 1
+        })
+      ], 6);
+    };
+  }
+};
 
 
 
