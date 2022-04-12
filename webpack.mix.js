@@ -12,9 +12,9 @@ const mix = require('laravel-mix');
  */
 
 require("laravel-mix-vue3");
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/real-time/app.js', 'public/js/real-time.js')
     .vue()
-    .sass('resources/scss/app.scss', 'public/css'); 
+    .sass('resources/scss/real-time/app.scss', 'public/css/real-time.css'); 
     // .postCss('resources/css/app.css', 'public/css', [
     //     //
     // ]);
