@@ -1,6 +1,7 @@
 <template>   
     <div>  
         <h1>Home</h1>  
+        <button class="btn btn-primary">aaaaaaaaaaaaaaffffffffffffff</button>    
     </div>   
 </template>   
 <script>   

@@ -2,7 +2,7 @@ require('./bootstrap');
 
 import { createApp } from 'vue';
 
-import ExampleComponent from './components/ExampleComponent.vue';
+import Landing from './components/Landing.vue';
 
-const app = createApp(ExampleComponent); 
+const app = createApp(Landing); 
 app.mount('#app');
