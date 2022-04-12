@@ -19747,7 +19747,10 @@ __webpack_require__.r(__webpack_exports__);
   components: {},
   props: {},
   data: function data() {
-    return {};
+    return {
+      email: '',
+      password: ''
+    };
   },
   created: function created() {},
   methods: {
@@ -19755,6 +19758,21 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: routeName
       });
+    },
+    register: function register() {
+      var self = this;
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      var config = {
+        headers: {
+          'Accept': 'application/json'
+        }
+      };
+      axios.post('/api/rt/register', data, config).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {});
     }
   },
   computed: {},
@@ -19826,10 +19844,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "landing"
+  "class": "landing container"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Landing page", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
@@ -19843,7 +19869,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.redirect('register');
     }, ["prevent"])),
     "class": "btn btn-primary"
-  }, "To Register page"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, "To Register page"), _hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.successMessage();
     }, ["prevent"])),
@@ -19884,10 +19910,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "register"
+  "class": "register container"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Register page", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Sample Form", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
+  "class": "mb-3"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "exampleInputEmail1",
+  "class": "form-label"
+}, "Email address", -1
+/* HOISTED */
+);
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  id: "emailHelp",
+  "class": "form-text"
+}, "We'll never share your email with anyone else.", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = {
+  "class": "mb-3"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "exampleInputPassword1",
+  "class": "form-label"
+}, "Password", -1
 /* HOISTED */
 );
 
@@ -19897,7 +19960,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.redirect('landing');
     }, ["prevent"])),
     "class": "btn btn-primary"
-  }, "To Landing page")]);
+  }, "To Landing page"), _hoisted_3, _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.email = $event;
+    }),
+    type: "email",
+    "class": "form-control",
+    id: "exampleInputEmail1",
+    "aria-describedby": "emailHelp"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.email]]), _hoisted_7]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.password = $event;
+    }),
+    type: "password",
+    "class": "form-control",
+    id: "exampleInputPassword1"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.register();
+    }, ["prevent"])),
+    type: "submit",
+    "class": "btn btn-primary"
+  }, "Submit")])]);
 }
 
 /***/ }),

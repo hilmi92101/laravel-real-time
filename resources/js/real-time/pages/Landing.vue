@@ -1,7 +1,7 @@
 <template>
-    <div class="landing">
+    <div class="landing container">
         <h1>Landing page</h1>
-        <button @click.prevent="redirect('register')" class="btn btn-primary">To Register page</button>
+        <button @click.prevent="redirect('register')" class="btn btn-primary">To Register page</button><br><br>
         <button @click.prevent="successMessage()" class="btn btn-success">Show Success Notification</button>
         <button @click.prevent="errorMessage()" class="btn btn-danger">Show Error Notification</button>
         <button @click.prevent="customMessage()" class="btn btn-primary">Custom Notification</button>
