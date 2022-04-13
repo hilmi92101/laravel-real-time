@@ -19688,26 +19688,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {},
   data: function data() {
-    return {};
+    return {
+      totalOnline: 0
+    };
   },
   created: function created() {
-    var _this = this;
-
-    window.Echo.channel('landing-notification').listen('.landing-notification-event', function (e) {
-      console.log(e);
-
-      _this.$snackbar.add({
-        "title": "Just now!",
-        "text": e.message,
-        "background": "#fff",
-        "icon": {
-          "path": "M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z",
-          "type": "mdi"
-        },
-        "group": "fed0a",
-        "count": 1
-      });
-    });
+    this.landingNotification();
+    this.landingUserCountNotification();
   },
   methods: {
     redirect: function redirect(routeName) {
@@ -19742,7 +19729,27 @@ __webpack_require__.r(__webpack_exports__);
         "group": "fed0a",
         "count": 1
       });
-    }
+    },
+    landingNotification: function landingNotification() {
+      var _this = this;
+
+      window.Echo.channel('landing-notification').listen('.landing-notification-event', function (e) {
+        console.log(e);
+
+        _this.$snackbar.add({
+          "title": "Just now!",
+          "text": e.message,
+          "background": "#fff",
+          "icon": {
+            "path": "M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z",
+            "type": "mdi"
+          },
+          "group": "fed0a",
+          "count": 1
+        });
+      });
+    },
+    landingUserCountNotification: function landingUserCountNotification() {}
   },
   computed: {},
   filters: {}
