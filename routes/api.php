@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\Realtime\RegisterController as RTRegisterController;
+use App\Http\Controllers\Api\RedisTest\TestController as RedisTestTestController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +18,7 @@ use App\Http\Controllers\Api\Realtime\RegisterController as RTRegisterController
 
 
 Route::post('/rt/register', [RTRegisterController::class, 'register']);
+Route::post('/redis-test/trigger-notification', [RedisTestTestController::class, 'triggerNotification']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
