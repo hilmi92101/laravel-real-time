@@ -19774,7 +19774,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {},
   data: function data() {
     return {
-      totalOnline: 0
+      totalOnline: 0,
+      visitorId: null
     };
   },
   created: function created() {
@@ -19787,11 +19788,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     triggerNotification: function triggerNotification() {
-      var x = Math.floor(Math.random() * 100000 + 1);
-      var y = Math.floor(Math.random() * 100000 + 1);
-      var visitorId = "visitor_" + x + "_" + y;
+      this.checkLocalStorageVisitorId();
       var data = {
-        visitorId: visitorId
+        visitorId: this.visitorId
       };
       var config = {
         headers: {
@@ -19801,6 +19800,17 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/redis-test/trigger-notification', data, config).then(function (response) {
         console.log(response.data);
       })["catch"](function (error) {});
+    },
+    checkLocalStorageVisitorId: function checkLocalStorageVisitorId() {
+      // CHECK LOCAL STORAGE IF VISITOR ID EXIST
+      if (localStorage.getItem('visitor_id') === null) {
+        var x = Math.floor(Math.random() * 100000 + 1);
+        var y = Math.floor(Math.random() * 100000 + 1);
+        this.visitorId = "visitor_" + x + "_" + y;
+        localStorage.setItem('visitor_id', this.visitorId);
+      } else {
+        this.visitorId = localStorage.getItem('visitor_id');
+      }
     }
   },
   computed: {},
