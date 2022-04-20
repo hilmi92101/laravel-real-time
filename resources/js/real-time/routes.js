@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Landing from './pages/Landing'; 
 import Register from './pages/Register'; 
 import RedisTest from './pages/RedisTest'; 
+import Queue from './pages/Queue'; 
 
 const router = createRouter({ 
     history: createWebHistory(), 
@@ -21,6 +22,11 @@ const router = createRouter({
             name: 'redis-test', 
             path: '/redis-test', 
             component: RedisTest, 
+        },
+        { 
+            name: 'queue', 
+            path: '/queue', 
+            component: Queue, 
         },
     ], 
 }); 
